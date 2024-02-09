@@ -1,0 +1,77 @@
+package ReExam;
+class Node{
+    String data;
+    String gender;
+    Node next;
+
+
+    public Node(String data, String gender) {
+        this.data = data;
+        this.gender = gender;
+        this.next = null;
+    }
+
+
+}
+
+public class MFLinkList {
+    Node head;
+
+    void add(String data,String gender){
+        Node newNode=new Node(data,gender);
+        if(head==null){
+            head=newNode;
+
+        }
+        else{
+            Node temp=head ;
+            while(temp.next!=null){
+                temp=temp.next;
+            }
+            temp.next=newNode;
+        }
+
+    }
+    void display(){
+        Node temp=head;
+        while(temp!=null){
+            System.out.println("Data: "+temp.data+", Gender: "+ temp.gender);
+            temp=temp.next;
+        }
+    }
+    boolean validateLinks(){
+
+        Node temp=head;
+        while(temp!=null && temp.next!=null){
+            if(temp.gender.equals(temp.next.gender)){
+                return  false;
+            }
+            temp=temp.next;
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        MFLinkList ll=new MFLinkList();
+        ll.add("John","male");
+        ll.add("Jane","male");
+        ll.add("James","male");
+        ll.add("Alice","female");
+
+        System.out.println("Linked List");
+
+        ll.display();
+
+        if (ll.validateLinks()) {
+            System.out.println("The linked list adheres to the gender constraint.");
+        } else {
+            System.out.println("The linked list violates the gender constraint.");
+        }
+
+    }
+
+
+}
+
+
+

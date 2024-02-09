@@ -1,0 +1,93 @@
+package ReExam;
+class NodeTwo{
+    int val;
+    NodeTwo next;
+
+    public NodeTwo(int val) {
+        this.val = val;
+        this.next=null;
+    }
+
+
+}
+
+public class RevLL {
+    NodeTwo head;
+    void add(int val){
+        NodeTwo newNode= new NodeTwo(val);
+        if(head==null){
+            head=newNode;
+
+        }
+        else{
+            NodeTwo temp=head;
+            while(temp.next!=null){
+                temp=temp.next;
+            }
+            temp.next=newNode;
+        }
+
+    }
+    void display(){
+        NodeTwo temp=head;
+        while(temp!=null){
+            System.out.println(temp.val+" ");
+            temp=temp.next;
+        }
+        System.out.println();
+    }
+    void reverse(){
+        NodeTwo prev=null;
+        NodeTwo current=head;
+        NodeTwo n=head.next;
+
+        while(current!=null){
+            current.next=prev;
+            prev=current;
+            current=n;
+            if(n!=null){
+                n=n.next;
+            }
+        }
+        head=prev;
+
+
+
+
+    }
+
+    void AlternateNode(){
+        NodeTwo current =head;
+        while(current!=null && current.next!=null){
+            current.next=current.next.next;
+            current=current.next;
+        }
+    }
+
+    public static void main(String[] args) {
+        RevLL ll=new RevLL();
+        ll.add(1);
+        ll.add(2);
+        ll.add(3);
+        ll.add(4);
+        ll.add(5);
+
+        System.out.println("Linked List ");
+        ll.display();
+        System.out.println("------------");
+        ll.reverse();
+
+        System.out.println("Reverse Linked ");
+        ll.display();
+
+        System.out.println("------------");
+
+        System.out.println("Linked List after deleting Alterate Node ");
+
+        ll.AlternateNode();
+        ll.display();
+
+
+
+    }
+}
